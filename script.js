@@ -1,24 +1,20 @@
-// finding the maximum element from the array 
+// Merging and Sorting the array 
 
-const x = [5, 1, 8, 2, 19, 10];
-const x1 = Math.max(...x);
-console.log(x1)
+const x1 = [343, 45, 45, 345, 345, 6];
+const x2 = [23, 98, 11, 22, 10];
 
-let x2 = x[0];
-for (let i = 0; i < x.length; i++) {
-    if (x[i] > x2)
-        x2 = x[i]
+const sortedArray = [...x1, ...x2].sort((a, b) => a - b);
+console.log(sortedArray)
 
-}
+// two more method one is concat and sort and other one is reduce and sort
 
-console.log(x2)
+// 1. using concat and sort 
 
-// reduce method is everywhere 
+const sortedArray1 = x1.concat(x2).sort((a, b) => a - b);
+console.log("concat and sort", sortedArray1);
 
-const x4 = x.reduce((acc, cur) => cur > acc ? cur : acc);
-console.log(x4)
+//2 . using reduce and sort 
 
-// by using sorting 
-
-const arr = x.sort((a, b) => b - a)[0];
-console.log("sortway", arr);
+const meregedArr = [x1, x2].reduce((acc, cur) => acc.concat(cur), []);
+const sorted = meregedArr.sort((a, b) => a - b);
+console.log("using reduce and sort", sorted)
