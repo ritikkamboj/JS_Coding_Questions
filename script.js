@@ -1,26 +1,24 @@
-// Ways to solve the problem on how to reverse the array 
+// finding the maximum element from the array 
 
-const x = [1, 2, 3, 4, 4, 5];
-
-const x1 = x.reverse();
+const x = [5, 1, 8, 2, 19, 10];
+const x1 = Math.max(...x);
 console.log(x1)
 
-// above one also change the original array
+let x2 = x[0];
+for (let i = 0; i < x.length; i++) {
+    if (x[i] > x2)
+        x2 = x[i]
 
-// Now for loop array way 
-const x3 = [1, 2, 3, 4, 5]
-const x2 = []
-for (let i = x3.length - 1; i >= 0; i--) {
-    x2.push(x3[i]);
-}
-console.log("reverse the array ", x2);
-
-// using temp variable way 
-
-for (let i = 0; i < x3.length / 2; i++) {
-    let temp = x3[i];
-    x3[i] = x3[x3.length - 1 - i];
-    x3[x3.length - 1 - i] = temp;
 }
 
-console.log(x3);
+console.log(x2)
+
+// reduce method is everywhere 
+
+const x4 = x.reduce((acc, cur) => cur > acc ? cur : acc);
+console.log(x4)
+
+// by using sorting 
+
+const arr = x.sort((a, b) => b - a)[0];
+console.log("sortway", arr);
