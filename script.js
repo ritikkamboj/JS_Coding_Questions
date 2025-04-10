@@ -1,20 +1,20 @@
-// Merging and Sorting the array 
+// So we have to create the object which makes the data of frequency 
 
-const x1 = [343, 45, 45, 345, 345, 6];
-const x2 = [23, 98, 11, 22, 10];
+const arr = [1, 1, 2, 3, 3, 5, 5, 5, 8, 8, 8, 8];
 
-const sortedArray = [...x1, ...x2].sort((a, b) => a - b);
-console.log(sortedArray)
+const freq = {};
 
-// two more method one is concat and sort and other one is reduce and sort
+arr.find((item) => {
+    freq[item] = (freq[item] || 0) + 1;
+})
 
-// 1. using concat and sort 
+// we cam use find and filter method here , 
 
-const sortedArray1 = x1.concat(x2).sort((a, b) => a - b);
-console.log("concat and sort", sortedArray1);
+const array = Object.keys(freq);
+console.log(array)
+const x = array.find((item) => freq[item] === 1);
+console.log(x);
 
-//2 . using reduce and sort 
-
-const meregedArr = [x1, x2].reduce((acc, cur) => acc.concat(cur), []);
-const sorted = meregedArr.sort((a, b) => a - b);
-console.log("using reduce and sort", sorted)
+// and if we want to find all the elements which comes only one times in the array 
+const x1 = array.filter((item) => freq[item] === 1);
+console.log(...x1);
