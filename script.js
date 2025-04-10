@@ -1,40 +1,39 @@
-// Writing a function  to rotate the array k times 
+// quetion to move all the zeroes at the end 
+// approach  : firstly we filter the non zero elemnts and then later we add the zeo elements in the last 
 
 
-function rotate(arr, k) {
-    k = k % arr.length;
+function settle(arr) {
 
-    return [...arr.slice(-k), ...arr.slice(0, -k)]
-}
+    let arr1 = []
+    let nonzero = 0;
 
-const x = rotate([1, 2, 3, 4, 5], 2);
-console.log(x);
-
-// we have two more methods to solve the rotating the array 
-// its by using splice and unshifts 
-
-
-function rotate1(arr, k) {
-    k = k % arr.length
-    let removed = arr.splice(-k);
-    console.log(removed)
-    arr.unshift(...removed);
-    return arr;
-}
-
-const newArr1 = rotate1([1, 2, 3, 4, 5], 2);
-console.log(newArr1)
-
-// 2 , its by using pop() and unshift() method 
-
-function rotate3(arr, k) {
-    k = k % arr.length
-
-    for (let i = 0; i < k; i++) {
-        arr.unshift(arr.pop());
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== 0) {
+            arr1[nonzero] = arr[i];
+            nonzero++;
+        }
     }
-    return arr;
+
+    while (nonzero < arr.length) {
+        arr1[nonzero] = 0
+        nonzero++
+    }
+    return arr1
 }
 
-const newArr2 = rotate3([1, 2, 3, 4, 5], 2)
-console.log(newArr2)
+let z = settle([1, 0, 4, 0, 2, 3, 0]);
+console.log(z);
+
+
+// one more way of solution to solve the same problem 
+
+
+function settle1(arr) {
+    let nonzeroes = arr.filter((item) => item !== 0);
+    let zeroes = arr.filter((item) => item === 0)
+
+    return nonzeroes.concat(zeroes)
+}
+
+const newArr = settle1([1, 0, 4, 0, 2, 3, 0]);
+console.log(newArr)
