@@ -1,42 +1,43 @@
-// finding the missing number from the array 
+// finding the repeated elements in the array 
 
-// Easy and smart way 
-function findingMissing(arr) {
-    let n = arr.length + 1;
-    let actualSum = (n * (n + 1)) / 2;
-    let expectedSum = arr.reduce((acc, cur) => acc + cur, 0);
+// In below solution if we gets repeated elements, we can furthur use Set too .
+const arr = [1, 2, 3, 2, 3];
 
-    return actualSum - expectedSum;
-}
+const duplicates = arr.filter((item, index) => arr.indexOf(item) !== index);
+console.log(duplicates)
 
-console.log(findingMissing([1, 2, 4, 5]))
+// calculating frequency way 
 
-// 2. using set way to find out the missing number 
+function frequency(arr) {
+    let freq = {};
+    let results = [];
 
-function missingNumber2(arr) {
-    let n = arr.length + 1;
-    // let seen = new Set(arr);
-    let arr1 = [...arr];
-
-    for (let i = 1; i <= n; i++) {
-        if (!arr1.includes(i))
-            return i;
+    for (let item of arr) {
+        freq[item] = (freq[item] || 0) + 1;
     }
-}
 
-console.log(missingNumber2([1, 2, 4, 5]))
-
-
-// 3rrd way , but we have to sort the array, which make sense also 
-
-
-function findingMissing3(arr) {
-    arr.sort((a, b) => a - b);
-
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] + 1 !== arr[i + 1])
-            return arr[i] + 1
+    for (let key in freq) {
+        if (freq[key] > 1)
+            results.push(Number(key))
     }
+    return results;
 }
 
-console.log(findingMissing3([1, 2, 4, 5]))
+console.log(frequency(arr))
+
+// 3.now using two sets method 
+
+function frequency1(arr) {
+    let seen = new Set();
+    let duplicates = new Set();
+
+    for (let item of arr) {
+        if (seen.has(item))
+            duplicates.add(item)
+        else
+            seen.add(item)
+    }
+
+    return Array.from(duplicates)
+}
+console.log(frequency1([1, 2, 3, 2, 3]))
