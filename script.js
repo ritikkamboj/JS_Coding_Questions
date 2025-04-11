@@ -1,73 +1,42 @@
-// Task is to find the pair of elements which results in the given sum 
-// 3 methods 
+// finding the missing number from the array 
 
-// 1.<ethod --> this method approach the elements from left to right 
+// Easy and smart way 
+function findingMissing(arr) {
+    let n = arr.length + 1;
+    let actualSum = (n * (n + 1)) / 2;
+    let expectedSum = arr.reduce((acc, cur) => acc + cur, 0);
+
+    return actualSum - expectedSum;
+}
+
+console.log(findingMissing([1, 2, 4, 5]))
+
+// 2. using set way to find out the missing number 
+
+function missingNumber2(arr) {
+    let n = arr.length + 1;
+    // let seen = new Set(arr);
+    let arr1 = [...arr];
+
+    for (let i = 1; i <= n; i++) {
+        if (!arr1.includes(i))
+            return i;
+    }
+}
+
+console.log(missingNumber2([1, 2, 4, 5]))
 
 
-function findingPairs(arr, target) {
-    let res = [];
+// 3rrd way , but we have to sort the array, which make sense also 
+
+
+function findingMissing3(arr) {
+    arr.sort((a, b) => a - b);
+
     for (let i = 0; i < arr.length; i++) {
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[i] + arr[j] === target)
-                res.push([arr[i], arr[j]])
-        }
+        if (arr[i] + 1 !== arr[i + 1])
+            return arr[i] + 1
     }
-
-    return res;
 }
 
-console.log(findingPairs([1, 2, 3, 4, 5, 6], 6));
-
-// 2. In Second Approach, we consider the previous elements from the current elements
-
-
-function findingPairs1(arr, target) {
-    let res = [];
-    // let seen = new Set();
-    let arr1 = []
-
-    for (let item of arr) {
-        let complement = target - item;
-
-        // if (seen.has(complement))
-        //     res.push([complement, item])
-        if (arr1.includes(complement))
-            res.push([complement, item])
-
-
-
-        arr1.push(item)
-    }
-    return res;
-}
-
-console.log(findingPairs1([1, 2, 3, 4, 5, 6], 6))
-
-// 3. Approach we consider moving the pointer from the both directions as per requirement 
-
-function findingPairs2(arr, target) {
-    arr.sort((a, b) => b - a)
-    let left = 0;
-    let right = arr.length - 1;
-    let res = [];
-    while (left < right) {
-        if (arr[left] + arr[right] === target) {
-            res.push([arr[left], arr[right]])
-            left++;
-            right--;
-        }
-        else if (arr[left] + arr[right] < target)
-            left++;
-        else if (arr[left] + arr[right] > target)
-            right--;
-    }
-
-    return res;
-
-}
-console.log(findingPairs2([1, 2, 3, 4, 5, 6], 6))
-
-
-// let arr3 = [1, 2, 3, 4, 5, 6];
-// let arr5 = arr3.sort((a, b) => b - a);
-// console.log(arr5, arr3)
+console.log(findingMissing3([1, 2, 4, 5]))
