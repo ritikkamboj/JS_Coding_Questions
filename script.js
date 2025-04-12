@@ -1,35 +1,57 @@
-// solutions to find the vowels in the string 
+// Solutions to find the first non repeating alphabet from the string 
 
-// 1. 
-function vowelsCount(str) {
-    const vowels = "aeiouAEIOU";
-    let count = 0;
+// 3 ways we have frequency and then we have map way and them we have compairing index way 
+
+// string name is swiss
+
+function firstRepeat(str) {
+    let freq = {};
 
     for (let char of str) {
-        if (vowels.includes(char))
-            count++;
+        freq[char] = (freq[char] || 0) + 1;
     }
-    return count;
 
+    // console.log(freq);
+
+    for (let key in freq) {
+        // console.log(key, freq[key]);
+        if (freq[key] === 1)
+            return key
+
+    }
 }
 
-console.log(vowelsCount('aeiou'));
+console.log(firstRepeat('ritik'));
 
-// 2. BY using regex matching 
 
-function vowelsCount1(str) {
-    let match1 = str.match(/[aeiou]/gi);
+// 2nd way is using the map concept 
 
-    return match1.length;
+function firstRepeat1(str) {
+
+    let map = new Map();
+
+    for (let item in str) {
+        map.set(item, (map.get(item) || 0) + 1)
+    }
+
+    for (let [key, num] of map.entries()) {
+        if (num === 1)
+            return key
+    }
+    return null;
+}
+console.log(firstRepeat('ritik'));
+
+
+// 3. compairing the index way 
+
+function firstRepeat2(str) {
+    for (let item of str)
+        if (str.indexOf(item) === str.lastIndexOf(item))
+            return item
+
+    return null
 }
 
-console.log(vowelsCount1("hello Sweetie"))
-
-// 3. By using reduce way 
-
-function vowelsCount2(str) {
-    let data = str.split('').reduce((acc, cur) => 'AEIOUaeiou'.includes(cur) ? acc + 1 : acc, 0);
-    return data;
-}
-
-console.log(vowelsCount2('Hello Sweetie'))
+console.log(firstRepeat2('jritik')
+)
