@@ -1,57 +1,22 @@
-// Solutions to find the first non repeating alphabet from the string 
+// Program to check that if the string contains another substring or not ?
 
-// 3 ways we have frequency and then we have map way and them we have compairing index way 
+// for this question we mostly have direct solutions
 
-// string name is swiss
+// 1. using includes method 
 
-function firstRepeat(str) {
-    let freq = {};
-
-    for (let char of str) {
-        freq[char] = (freq[char] || 0) + 1;
-    }
-
-    // console.log(freq);
-
-    for (let key in freq) {
-        // console.log(key, freq[key]);
-        if (freq[key] === 1)
-            return key
-
-    }
-}
-
-console.log(firstRepeat('ritik'));
+let str = "Hello sweetie";
+// below way is case sensitive 
+console.log(str.includes('sweet'));
 
 
-// 2nd way is using the map concept 
+// indexOf method 
 
-function firstRepeat1(str) {
+console.log(str.indexOf('sweet') !== -1);
 
-    let map = new Map();
+// search method which is use with regex 
+// we make s=is case insensitive by using i 
 
-    for (let item in str) {
-        map.set(item, (map.get(item) || 0) + 1)
-    }
+console.log(str.search(/SWEET/i) !== -1);
 
-    for (let [key, num] of map.entries()) {
-        if (num === 1)
-            return key
-    }
-    return null;
-}
-console.log(firstRepeat('ritik'));
-
-
-// 3. compairing the index way 
-
-function firstRepeat2(str) {
-    for (let item of str)
-        if (str.indexOf(item) === str.lastIndexOf(item))
-            return item
-
-    return null
-}
-
-console.log(firstRepeat2('jritik')
-)
+// match method 
+console.log(str.match(/sweet/) ? true : false); 
