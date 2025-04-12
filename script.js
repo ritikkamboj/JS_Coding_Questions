@@ -1,43 +1,31 @@
-// finding the repeated elements in the array 
+// Ways to reversing the string 
 
-// In below solution if we gets repeated elements, we can furthur use Set too .
-const arr = [1, 2, 3, 2, 3];
+// 1. using helping function way 
 
-const duplicates = arr.filter((item, index) => arr.indexOf(item) !== index);
-console.log(duplicates)
+let x = 'Hello';
 
-// calculating frequency way 
+let y = x.split('').reverse().join('');
+console.log(y)
 
-function frequency(arr) {
-    let freq = {};
-    let results = [];
+// 2 . using array way 
 
-    for (let item of arr) {
-        freq[item] = (freq[item] || 0) + 1;
+function strReverse(arr) {
+    let rverse = '';
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        rverse = rverse + arr[i]
     }
 
-    for (let key in freq) {
-        if (freq[key] > 1)
-            results.push(Number(key))
-    }
-    return results;
+    return rverse;
+
 }
 
-console.log(frequency(arr))
+// strReverse('ritik')
+console.log(strReverse('ritik'))
 
-// 3.now using two sets method 
+// 3. The Hukum ka Ikka is using reduce way 
 
-function frequency1(arr) {
-    let seen = new Set();
-    let duplicates = new Set();
+let reverse = 'ritik'.split('').reduce((acc, cur) => cur + acc, "");
+console.log(reverse)
 
-    for (let item of arr) {
-        if (seen.has(item))
-            duplicates.add(item)
-        else
-            seen.add(item)
-    }
-
-    return Array.from(duplicates)
-}
-console.log(frequency1([1, 2, 3, 2, 3]))
+console.log('ritik'[0]);
