@@ -1,44 +1,35 @@
-// Checking Pallindrome 
+// solutions to find the vowels in the string 
 
-function checkPalindrome(arr) {
-    let reverse = arr.split('').reverse().join('');
-    if (arr === reverse)
-        return true
-    else
-        return false
-}
+// 1. 
+function vowelsCount(str) {
+    const vowels = "aeiouAEIOU";
+    let count = 0;
 
-console.log(checkPalindrome('lol'));
-
-
-function checkPalindrome1(arr) {
-    let left = 0;
-    let right = arr.length - 1;
-
-    while (left < right) {
-        if (arr[left] !== arr[right])
-            return false
-        left++;
-        right--;
+    for (let char of str) {
+        if (vowels.includes(char))
+            count++;
     }
-
-    return true
-
-}
-
-console.log(checkPalindrome('lol'));
-
-
-// 3rd way 
-
-function checkPalindrome2(str) {
-    let len = str.length - 1;
-
-    for (let i = 0; i < len / 2; i++) {
-        if (str[i] !== str[len - i])
-            return false;
-    }
-    return true;
+    return count;
 
 }
-console.log(checkPalindrome2('madam'))
+
+console.log(vowelsCount('aeiou'));
+
+// 2. BY using regex matching 
+
+function vowelsCount1(str) {
+    let match1 = str.match(/[aeiou]/gi);
+
+    return match1.length;
+}
+
+console.log(vowelsCount1("hello Sweetie"))
+
+// 3. By using reduce way 
+
+function vowelsCount2(str) {
+    let data = str.split('').reduce((acc, cur) => 'AEIOUaeiou'.includes(cur) ? acc + 1 : acc, 0);
+    return data;
+}
+
+console.log(vowelsCount2('Hello Sweetie'))
