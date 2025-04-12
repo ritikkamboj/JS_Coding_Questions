@@ -1,31 +1,44 @@
-// Ways to reversing the string 
+// Checking Pallindrome 
 
-// 1. using helping function way 
+function checkPalindrome(arr) {
+    let reverse = arr.split('').reverse().join('');
+    if (arr === reverse)
+        return true
+    else
+        return false
+}
 
-let x = 'Hello';
+console.log(checkPalindrome('lol'));
 
-let y = x.split('').reverse().join('');
-console.log(y)
 
-// 2 . using array way 
+function checkPalindrome1(arr) {
+    let left = 0;
+    let right = arr.length - 1;
 
-function strReverse(arr) {
-    let rverse = '';
-
-    for (let i = arr.length - 1; i >= 0; i--) {
-        rverse = rverse + arr[i]
+    while (left < right) {
+        if (arr[left] !== arr[right])
+            return false
+        left++;
+        right--;
     }
 
-    return rverse;
+    return true
 
 }
 
-// strReverse('ritik')
-console.log(strReverse('ritik'))
+console.log(checkPalindrome('lol'));
 
-// 3. The Hukum ka Ikka is using reduce way 
 
-let reverse = 'ritik'.split('').reduce((acc, cur) => cur + acc, "");
-console.log(reverse)
+// 3rd way 
 
-console.log('ritik'[0]);
+function checkPalindrome2(str) {
+    let len = str.length - 1;
+
+    for (let i = 0; i < len / 2; i++) {
+        if (str[i] !== str[len - i])
+            return false;
+    }
+    return true;
+
+}
+console.log(checkPalindrome2('madam'))
