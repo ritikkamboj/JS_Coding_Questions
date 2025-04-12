@@ -1,22 +1,25 @@
-// Program to check that if the string contains another substring or not ?
-
-// for this question we mostly have direct solutions
-
-// 1. using includes method 
-
-let str = "Hello sweetie";
-// below way is case sensitive 
-console.log(str.includes('sweet'));
+// program to capitalize the first letter of the each word in the sentence 
 
 
-// indexOf method 
+function capitalize(arr) {
 
-console.log(str.indexOf('sweet') !== -1);
+    let x = (arr.split(' ').map((item) => item[0].toUpperCase() + item.slice(1)).join(' '))
+    // console.log(arr)
+    console.log(x)
+}
 
-// search method which is use with regex 
-// we make s=is case insensitive by using i 
 
-console.log(str.search(/SWEET/i) !== -1);
 
-// match method 
-console.log(str.match(/sweet/) ? true : false); 
+let arg = "hello cutie gpt"
+capitalize(arg)
+
+
+// 2nd way by using regex way 
+
+function capitalize1(arr) {
+    let x = arr.replace('/\b\w/g', (char) => char.toUpperCase())
+    return x;
+
+}
+
+capitalize(arg);
