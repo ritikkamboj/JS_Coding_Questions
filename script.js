@@ -1,36 +1,44 @@
-// SOlutions to make reverse a sentence
+// checking if two strings are rotation of each other 
 
-// 1. By using split() and join() and one more uhmmm... and reverse()
+// 1. Ist approach is combining the str1 2 times and then checking str2 
 
-function revSent(sen) {
-    return sen.split(' ').reverse().join(' ');
+function strChecking(str1, str2) {
+    let combined = str1 + str1;
+    if (combined.includes(str2))
+        return true;
+    return false
 }
-console.log(revSent("Hello My Sweetie"));
 
-// 2nd way is using manual array way ( for interview approach )
+console.log(strChecking('ABCD', "CDAB")
+)
 
-function revSent1(sen) {
-    let arr = sen.split(' ');
-    console.log(arr.length)
-    let reverse = ''
+// 2nd method is manial ROation and checking 
 
-    for (let i = arr.length - 1; i >= 0; i--) {
-        reverse = reverse + arr[i] + (i > 0 ? " " : "")
+function strChecking1(str1, str2) {
+    // let str = str1.split('');
+    for (let i = 0; i < str1.length; i++) {
+        let combine = str1.slice(i) + str1.slice(0, i);
+        if (combine === str2)
+            return true
     }
-    return reverse;
+    return falsex
+}
+console.log(strChecking1('ABCD', "CDAB"));
+
+
+// using Array way and psuh method 
+
+
+function strChecking2(str1, str2) {
+    let str = str1.split('');
+
+    for (let i = 0; i < str1.length; i++) {
+        str.push(str.shift());
+        if (str.join('') === str2)
+            return true
+    }
+    return false;
+
 }
 
-console.log(revSent1("Hello My Sweetie"))
-
-// Using the Boss method , the reduce method 
-
-
-function revSent2(sen) {
-    return sen.split(" ").reduce((acc, cur) => cur + ' ' + acc, '').trim();
-}
-
-console.log(revSent2("Hello My Sweetie"))
-
-
-let arr2 = "  jai mata di  ".trim();
-console.log(arr2)
+console.log(strChecking2('ABCD', "CDAB"));
