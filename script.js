@@ -1,48 +1,36 @@
-// 1 . Removing all the duplicates characters from string 
-// 1/ first approach is by using set method 
+// SOlutions to make reverse a sentence
 
-function removeDuplicates(str) {
+// 1. By using split() and join() and one more uhmmm... and reverse()
 
-    let seen = new Set();
-    result = ""
+function revSent(sen) {
+    return sen.split(' ').reverse().join(' ');
+}
+console.log(revSent("Hello My Sweetie"));
 
-    for (let item of str) {
-        if (!seen.has(item)) {
-            seen.add(item);
-            result += item;
+// 2nd way is using manual array way ( for interview approach )
 
-        }
+function revSent1(sen) {
+    let arr = sen.split(' ');
+    console.log(arr.length)
+    let reverse = ''
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        reverse = reverse + arr[i] + (i > 0 ? " " : "")
     }
-    return result;
+    return reverse;
 }
 
-console.log(removeDuplicates('aabbcccddd'))
+console.log(revSent1("Hello My Sweetie"))
 
-// 2. using built in methods like split(), indexOF and filter and join()
+// Using the Boss method , the reduce method 
 
-function removeDuplicates1(str) {
-    return str.split('').filter((num, index, arr) => arr.indexOf(num) === index).join('');
+
+function revSent2(sen) {
+    return sen.split(" ").reduce((acc, cur) => cur + ' ' + acc, '').trim();
 }
 
-console.log(removeDuplicates('aabbcccddd'))
-// console.log(removeDuplicates1(''))
-
-// 3rd way using map Method 
-
-function removeDuplicates2(str) {
-    let map = new Map();
-    let result = ''
-
-    for (let item of str) {
-        if (!map.has(item)) {
-            map.set(item, true)
-            result += item;
-        }
-    }
-    return result;
+console.log(revSent2("Hello My Sweetie"))
 
 
-
-}
-
-console.log(removeDuplicates2('aabbcccddd'))
+let arr2 = "  jai mata di  ".trim();
+console.log(arr2)
