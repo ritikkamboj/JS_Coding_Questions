@@ -1,45 +1,42 @@
-// Program to see if the string has unique characters or not 
+//  Compress a string means Run length encoding
 
-// 1 . Ist Method we have to use set way to check the string 
+// 1. simple array method 
 
-function checkStr(str) {
-    let seen = new Set();
+function compressString(str) {
 
-    for (let item of str) {
-        if (seen.has(item))
-            return false;
-        seen.add(item);
-    }
-
-    return true;
-}
-
-console.log(checkStr('abcdd'))
-
-// 2nd way is one liner way of solving the issue 
-
-
-function checkStr1(str) {
-
-    const hasAllUnique = str => new Set(str).size === str.length;
-
-    console.log(hasAllUnique(str));
-}
-
-checkStr1('abcdd')
-
-// BY using two array method
-
-
-function checkStr2(str) {
+    let result = "";
+    let count = 1;
     for (let i = 0; i < str.length; i++) {
-        for (let j = i + 1; j < str.length; j++) {
-            if (str[i] === str[j])
-                return false
+        if (str[i] === str[i + 1])
+            count++;
+        else {
+            result = result + str[i] + count;
+            count = 1;
         }
     }
-    return true
+
+    return result;
 }
 
-console.log(checkStr2('abcd'));
+console.log(compressString('aabbccddd'))
 
+
+// 2.using method array , but inside working is same as above approach 
+
+function compressString1(str) {
+    let result = [];
+    let count = 1;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === str[i + 1])
+            count++;
+        else {
+            result.push(str[i] + count);
+            count = 1;
+        }
+    }
+
+    return result.join('');
+}
+
+console.log(compressString1('aabbccddd'))
