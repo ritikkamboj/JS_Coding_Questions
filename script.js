@@ -1,89 +1,45 @@
-// Finding the most frequent character in the string 
+// Program to see if the string has unique characters or not 
 
-// Ist Method is using object to count the frequency 
+// 1 . Ist Method we have to use set way to check the string 
 
-function countFreq(str) {
-    let freq = {};
-    let maxCount = 0;
-    let maxChar = '';
-
+function checkStr(str) {
+    let seen = new Set();
 
     for (let item of str) {
-        freq[item] = (freq[item] || 0) + 1;
-
-        if (freq[item] > maxCount) {
-            maxCount = freq[item]
-
-            maxChar = item;
-
-        }
+        if (seen.has(item))
+            return false;
+        seen.add(item);
     }
 
-    return maxChar;
-
-
-
+    return true;
 }
 
-console.log(countFreq('aabbbccccdd'));
+console.log(checkStr('abcdd'))
+
+// 2nd way is one liner way of solving the issue 
 
 
+function checkStr1(str) {
 
-// we are using map method and mostly approach remain same as above method 
+    const hasAllUnique = str => new Set(str).size === str.length;
+
+    console.log(hasAllUnique(str));
+}
+
+checkStr1('abcdd')
+
+// BY using two array method
 
 
-
-
-function countFreq1(str) {
-    let map = new Map();
-    let maxCount = 0;
-    let maxChar = '';
-
-    for (let item of str) {
-        map.set(item, (map.get(item) || 0) + 1)
-
-        if (map.get(item) > maxCount) {
-            maxCount = map.get(item);
-            maxChar = item
+function checkStr2(str) {
+    for (let i = 0; i < str.length; i++) {
+        for (let j = i + 1; j < str.length; j++) {
+            if (str[i] === str[j])
+                return false
         }
     }
-    return maxChar;
+    return true
 }
 
-console.log(countFreq1('aabbbccccdd'));
+console.log(checkStr2('abcd'));
 
-
-// 3rd method using split() and reduce method 
-
-const userProfile = {
-    id: 101,
-    name: "CutiePie",
-    age: 24,
-    isOnline: true,
-    hobbies: ["coding", "coffee", "memes"],
-    address: {
-        city: "Codeville",
-        zip: "12345",
-        country: "JS Land"
-    },
-}
-
-console.log(Object.keys(userProfile))
-
-
-// 3rd way is using reduce method ( we have to use two times reduce method )
-
-function countFreq2(str) {
-    let freq = str.split('').reduce((acc, cur) => {
-        acc[cur] = (acc[cur] || 0) + 1;
-        return acc;
-
-    }, {})
-
-    console.log(freq)
-
-    return Object.keys(freq).reduce((a, b) => freq[a] > freq[b] ? a : b);
-
-}
-
-console.log(countFreq2('aabbbccccdd'));
