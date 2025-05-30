@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <script>
+      console.log("Starting Normal Script");
+      const start = Date.now();
+      while (Date.now() - start < 3000) {
+        // Blocking for 3 seconds
+      }
+      console.log("Normal Script Completed");
+    </script>
   </head>
   <body>
-    <script src="/script.js"></script>
+    <h1>Normal Script Test</h1>
+    <p>You will see this after the script completes.</p>
   </body>
 </html>
