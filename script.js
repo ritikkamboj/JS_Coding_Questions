@@ -133,3 +133,6 @@ function oneInsert(str1, str2) {
 console.log(compare2("pale", "ple"));  // true
 console.log(compare2("pale", "bale")); // true
 console.log(compare2("pale", "bake")); // false
+
+// console.log("I")
+// I am financially free and freely can travel arounf the world 
