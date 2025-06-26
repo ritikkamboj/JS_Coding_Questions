@@ -1,45 +1,142 @@
-// logical or Operator 
+// // practicing promise in js 
 
-// this one only move ahead when the left one is nullish value -> 0, "", NaN, undefined, null, false
-const name1 = "" || 'anonymous';
+// // writing the simplest promise 
 
-console.log(name1)
+// const myPromise = new Promise((resolve, reject) => {
 
-// 2. Nullish COalescing operator 
-// ( if left hand side contain any null value )
+//     let sucess = false;
+//     if (sucess)
+//         resolve("ban jaegi baat ")
+//     else
+//         reject("not resolved ")
+// })
 
-const data = 0 ?? "great";
-console.log(data)
-
-
-// 3.optional chaining 
-
-// safely can access the nested value without throwing nay console.error( );
+// // myPromise.then((data) => console.log(data)).catch((err) => console.log(err))
 
 
-const obj = { name: "ritik", std: { school: "jai bharat" } }
-
-console.log(obj?.std?.school);
-
-// logical and opeartor us used when the left value is truthy 
-
-const data3 = false && "I am cracking the inteview tomorrow"
-
-console.log(data3)
+// // by using a function 
 
 
-// optional calling a function 
+// function fetchData(data) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (data)
+//                 resolve("data fecthed sucessfully")
+//             else
+//                 reject("data is not fetched ")
+
+//         }, 5000)
+//     })
+// }
+
+// // fetchData(true).then((data) => console.log(data)).catch((data) => console.log(data))
 
 
-function greet() {
-    console.log("jai maara di ")
+// // to solve the calll back issue we have to use make the function indivisually use 
+
+
+function task1() {
+    return new Promise((resolve) => setTimeout(() => resolve("task1 is done here"), 1000));
 }
 
-greet?.();
+// task1().then((data) => console.log(data));
+
+function task2() {
+    return new Promise((resolve) => setTimeout(() => resolve("task2 is done"), 1000));
+
+}
+
+function taks3() {
+    return new Promise((resolve) => setTimeout(() => resolve("task3 us doe "), 1000))
+}
 
 
-// ternary operator 
-let age = 19
-const drinking = age > 18 ? "canDrink" : "prohibited "
+// task1().then((data) => {
+//     console.log(data)
+//     return task2();
+// }).then((data2) => {
+//     console.log(data2)
+//     return taks3();
+// }).then((data3) => {
+//     console.log(data3)
+// })
 
-console.log(drinking)
+// getting data from above functon by using async and await 
+
+
+async function getData() {
+    const data1 = await task1();
+    console.log(data1);
+
+    const data2 = await task2();
+    console.log(data2)
+
+    const data3 = await taks3();
+    console.log(data3)
+
+
+    console.log("all tasks are done successfully ")
+}
+
+// getData();
+
+
+// example to show the error in async await error handling 
+
+async function fetchData2() {
+    try {
+        const data1 = await task1();
+        console.log(data1)
+
+        throw new Error("something went wrong here ")
+
+        const data2 = await task2();
+        console.log(data2)
+    }
+    catch (err) {
+        console.log("err is :", err.message)
+    }
+
+}
+
+// fetchData2();
+
+
+// real life example to use the promise and async and await 
+
+function getUserData(id) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (id === 1)
+                resolve({ id: 1, name: "ritik" })
+            else {
+                reject("something went wrong ")
+            }
+        }, 1000)
+
+
+
+    })
+}
+
+getUserData(1).then((data) => console.log(data)).catch((err) => console.log(err))
+
+
+// using the same above functon with async and await approach 
+
+
+async function gettingData(id) {
+
+    try {
+
+        const data = await getUserData(id)
+        console.log(data)
+
+    }
+    catch (err) {
+        console.log(err.message)
+    }
+}
+
+gettingData(1);
+
