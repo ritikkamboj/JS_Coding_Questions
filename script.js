@@ -76,7 +76,7 @@ console.log(compare1("pale", "bake")); // false
 
 
 
-// 3rd way is to make separate functions for the calculations  .
+// 3rd way is to make separate functions for the calculations  . 
 
 
 function compare2(str1, str2) {
