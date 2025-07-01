@@ -135,4 +135,30 @@ console.log(compare2("pale", "bale")); // true
 console.log(compare2("pale", "bake")); // false
 
 // console.log("I")
-// I am financially free and freely can travel arounf the world 
+// I am financially free and freely can travel arounf the world
+
+
+// solving a question to found the anagrams present inside the array 
+
+
+function modify(arr) {
+
+    let obj = {};
+
+    let sorted = arr.map((item) => item.split('').sort().join(''))
+
+    for (let item of sorted) {
+        if (!obj[item]) {
+            obj[item] = [];
+        }
+
+        obj[item].push(item);
+    }
+
+    // console.log(sorted)
+    console.log(obj)
+
+    console.log(Object.values(obj))
+}
+
+modify(["eat", "tea", "tan", "ate", "nat", "bat"]);
